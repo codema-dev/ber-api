@@ -109,7 +109,8 @@ setup(
     # },
     install_requires=REQUIRED,
     extras_require=EXTRAS,
-    include_package_data={NAME: ["defaults.json"]},
+    include_package_data=True,
+    package_data={NAME: ["defaults.json"]},
     license="MIT",
     classifiers=[
         # Trove classifiers
