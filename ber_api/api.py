@@ -48,7 +48,9 @@ def _login_to_portal(
         )
 
 
-def _request_all_data(session: requests.Session, form_data: BerForm, savepath: Path):
+def _request_all_data(
+    session: requests.Session, form_data: BerForm, savepath: Path, tqdm_bar: Comparable
+):
     with session.post(
         url="https://ndber.seai.ie/BERResearchTool/ber/search.aspx",
         headers=form_data["headers"],
@@ -56,7 +58,7 @@ def _request_all_data(session: requests.Session, form_data: BerForm, savepath: P
         stream=True,
     ) as response:
         response.raise_for_status()
-        _download_file_from_response(response, savepath)
+        _download_file_from_response(response, savepath, tqdm_bar)
 
 
 def request_public_ber_db(
